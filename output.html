@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agua potable en la población Baka de Camerún</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <style>
+        .sitios-relacionados p {
+            margin: 0 2rem; 
+        }
+        :root {
+            --sector-image-spacing: 1px; 
+        }
+        #sectores-container img {
+            margin-right: var(--sector-image-spacing);
+        }
+        #sectores-container img:last-child {
+            margin-right: 0; 
+        }
+        .title-bar {
+            position: relative;
+            width: 100%;
+            height: auto;
+            background-color: rgb(0, 128, 128);
+            z-index: 0;
+            padding: 10px 0; /* Add padding for better spacing */
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Distribute content evenly */
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+            padding: 0 15px; /* Add padding for responsiveness */
+        }
+        .title-container img {
+            height: 50px; /* Adjust size for responsiveness */
+            margin-right: 10px; /* Add spacing between image and title */
+        }
+        .title-container h3 {
+            color: white;
+            margin: 0;
+            flex-grow: 1; /* Allow the title to take available space */
+            text-align: center; /* Center the title */
+        }
+        .title-container .acronym {
+            color: white;
+            font-weight: bold;
+            margin-left: 10px; /* Add spacing between title and acronym */
+            text-align: right; /* Align acronym to the right */
+        }
+        .section-title {
+            font-weight: bold; /* Make titles bold */
+            color: rgb(0, 128, 128); /* Match the color of the bar */
+            font-size: 1.5rem; /* Increase font size */
+        }
+        .container {
+            margin-top: 20px; /* Set margin to 20px to reduce space */
+        }
+        .row.align-items-start {
+            margin-top: 0px; /* Reduce space between title bar and main image */
+        }
+        /* Styles for the new rectangles */
+        .rectangles-container {
+            position: absolute;
+            bottom: 20px; /* Adjust spacing from the bottom */
+            left: 910px; /* Slightly to the right */
+            display: flex;
+            gap: 100px; /* Space between rectangles */
+        }
+        .rectangle {
+            width: 100px;
+            height: 50px;
+            background-color: rgb(0, 128, 128); /* Match the page's color scheme */
+            border-radius: 10px; /* Rounded corners */
+            transition: transform 0.2s ease; /* Smooth transition for scaling */
+        }
+        .rectangle:hover {
+            transform: scale(1.1); /* Slightly enlarge the rectangle */
+        }
+        .sitios-relacionados-container, .publicaciones-container {
+            margin-top: 30px; /* Reduced from 50px to 30px to move it 20px higher */
+            text-align: center;
+        }
+        .publicaciones-container {
+            margin-top: -300px; /* Moved up by 300px from the original 30px */
+            text-align: center;
+            font-weight: bold; /* Make titles bold */
+            color: rgb(0, 128, 128); /* Match the color of the bar */
+            font-size: 1.5rem;
+        }
+        .sitios-relacionados-container {
+            margin-top: -150px; /* Moved up by 200px from the original 30px */
+            text-align: center;
+            font-weight: bold; /* Make titles bold */
+            color: rgb(0, 128, 128); /* Match the color of the bar */
+            font-size: 1.5rem;
+        }
+        .publicaciones-container h5, .sitios-relacionados-container h5 {
+            font-weight: bold; /* Ensure bold text */
+        }
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.zoom = "90%"; 
+            
+            const xmlPath = "plantillaproyectos1.xml"; // Corrected XML file path
+
+            fetch(xmlPath)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, "application/xml");
+
+                    // Leer los valores de los campos ODS
+                    const ods1 = xmlDoc.querySelector("ODS1").textContent.trim();
+                    const ods2 = xmlDoc.querySelector("ODS2").textContent.trim();
+                    const ods3 = xmlDoc.querySelector("ODS3").textContent.trim();
+
+                    // Contenedor donde se agregarán las imágenes
+                    const odsContainer = document.getElementById("ods-container");
+
+                    // Función para crear una imagen ODS
+                    const createODSImage = (odsFileName) => {
+                        const img = document.createElement("img");
+                        img.src = `Original/ODS/${odsFileName}`; // Ensure the file name is used directly
+                        img.alt = `ODS ${odsFileName}`;
+                        img.className = "img-fluid m-2";
+                        img.style.maxWidth = "70px";
+                        return img;
+                    };
+
+                    // Agregar las imágenes al contenedor
+                    if (ods1) odsContainer.appendChild(createODSImage(ods1));
+                    if (ods2) odsContainer.appendChild(createODSImage(ods2));
+                    if (ods3) odsContainer.appendChild(createODSImage(ods3));
+
+                    const fecha = xmlDoc.querySelector("fecha").textContent.trim();
+                    document.getElementById("fecha").textContent = fecha; // Set fecha dynamically
+                })
+                .catch(error => console.error("Error al cargar el archivo XML:", error));
+        });
+    </script>
+</head>
+<body>
+    <div class="title-bar">
+        <div class="title-container">
+            <img src="Original/Iconos/Casa_blanca.svg" alt="Casa Blanca" />
+            <span id="fecha" class="text-white fw-bold ms-2">Verano de 2024</span> <!-- Made fecha bold -->
+            <h3 class="fw-bold text-nowrap">Agua potable en la población Baka de Camerún</h3>
+            <span class="acronym">GEOCOOP Agua 24</span>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <!-- Título y Logos -->
+        <div class="row title-container">
+            <div class="col-auto d-flex align-items-center">
+                <img src="Original/Iconos/Casa_blanca.svg" alt="Casa Blanca" />
+            </div>
+            <div class="col text-center position-relative">
+                <h3 class="fw-bold mb-3 text-nowrap">Agua potable en la población Baka de Camerún</h3>
+                <span class="position-absolute top-50 end-0 translate-middle-y text-white me-3">GEOCOOP Agua 24</span>
+            </div>
+        </div>
+
+       
+        <div class="row align-items-start mt-2"> 
+            <!-- Imagen principal a la izquierda -->
+            <div class="col-md-6" style="position: relative; margin-bottom: 3rem;"> <!-- Increased margin-bottom -->
+                <img src="Original/Proyecto/Foto_portada_ficha_Diego.jpg" alt="Imagen principal" 
+                     class="img-fluid rounded" 
+                     style="position: absolute; top: -50px; left: 0; max-height: 400px;"> <!-- Restored original position -->
+            </div>
+            <!-- Dividir espacio en 3 columnas -->
+            <div class="col-md-6 d-flex">
+                <div class="col text-center">
+                    <h5 class="section-title">Personas</h5>
+                    <div style="margin-top: 15px;"> <!-- Add margin to lower the image and text -->
+                        <img src="Original/Iconos/personas1_ii.png" alt="Personas" class="img-fluid mt-1" style="width: 150px; height: auto;">
+                        <div class="mt-3 px-3 py-1 border rounded d-inline-block" style="background-color: rgb(0, 128, 128); color: white;">
+                            <p class="m-0 fw-bold">500</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <h5 class="section-title">ODS</h5>
+                    <div id="ods-container" class="d-flex flex-column align-items-center mt-2">
+                        <img src="Original/ODS/4_ODS.jpg" alt="ODS 1" class="img-fluid my-2" style="max-width: 70px;">
+                        <img src="Original/ODS/6_ODS.jpg" alt="ODS 2" class="img-fluid my-2" style="max-width: 70px;">
+                        <img src="Original/ODS/13_ODS.jpg" alt="ODS 3" class="img-fluid my-2" style="max-width: 70px;">
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <h5 class="section-title">Sectores</h5>
+                    <div id="sectores-container" class="d-flex flex-column align-items-center mt-2">
+                        <img src="Original/Sectores/basicas.png" alt="Sector 1" class="img-fluid my-1" style="max-width: 80px;" title="Básicos">
+                        <img src="Original/Sectores/salud.png" alt="Sector 2" class="img-fluid my-1" style="max-width: 80px;" title="Salud">
+                        <img src="Original/Sectores/cultura.png" alt="Sector 3" class="img-fluid my-1" style="max-width: 80px;" title="Cultura">
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-4"> <!-- Independent container for "Sitios relacionados" -->
+                <div class="row mt-4" style="margin-bottom: 100px; margin-left: 100px;"> <!-- Moved 100px to the right -->
+                    <div class="col-12 text-center" style="position: relative; text-align: center;">
+                        <h5 class="section-title" style="color: rgb(0, 128, 128);"></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-4"> <!-- Independent container for "Sitios relacionados" -->
+                <div class="row mt-1" style="margin-left: 100px;"> <!-- Reduced margin-top by 50px -->
+                    <div class="col-12 text-center" style="position: relative; text-align: center;">
+                        <h5 class="section-title" style="color: rgb(0, 128, 128);"></h5>
+                    </div>
+                </div>
+            </div>
+            
+        <!-- Abstract debajo de la imagen principal -->
+        <div class="row" style="margin-top: -120px;"> <!-- Restored original position -->
+            <div class="col-md-5">
+                <p class="m-0" style="line-height: 1.5; text-align: justify;">Proyecto de aprendizaje servicio (UPM-ZyL) llevado a cabo como TFG de Diego Torres Panadero. Se analizó el acceso y la calidad del agua en comunidades Baka del Sur y Este de Camerún (julio-septiembre 2024). Se muestrearon 45 fuentes de agua (34 superficiales) y 51 rutas de acceso en los alrededores de Bengbis Adjoli, Afan Avoto y Mintom II. Los análisis visuales, fisicoquímicos y microbiológicos revelaron que más del 70% del agua no es potable.</p>
+            </div>
+        </div>
+
+        <!-- Logos alineados a la izquierda -->
+        <div class="row" style="margin-top: -5px;"> <!-- Adjusted alignment for logos -->
+            <div class="col-md-12 d-flex align-items-center flex-wrap justify-content-start"> <!-- Expanded column and reduced spacing -->
+                <a href="https://www.upm.es/" target="_blank" rel="noopener noreferrer" class="me-1">
+                    <img src="Original/Logos/UPMlogo.jpeg" alt="UPM" class="img-fluid" style="max-height: 55px;">
+                </a>
+                <a href="https://web.montes.upm.es/" target="_blank" rel="noopener noreferrer" class="me-1">
+                    <img src="Original/Logos/MONTESlogo.jpeg" alt="MONTES" class="img-fluid" style="max-height: 60px;">
+                </a>
+                <a href="https://www.geoso2.es/" target="_blank" rel="noopener noreferrer" class="me-1">
+                    <img src="Original/Logos/GEOSO2_logo_negro_bola_verde.png" alt="GE2" class="img-fluid" style="max-height: 27px;">
+                </a>
+                <a href="https://www.zercaylejos.org/" target="_blank" rel="noopener noreferrer" class="me-1">
+                    <img src="Original/Logos/ZERCA_Y_LEJOSlogo.jpeg" alt="Zerca_Y_Lejos" class="img-fluid" style="max-height: 65px; width: auto;">
+                </a>
+                <a href="https://www.leftcape.com/" target="_blank" rel="noopener noreferrer" class="me-1">
+                    <img src="Original/Logos/Left_Cape.png" alt="LftCp" class="img-fluid" style="max-height: 20px;">
+                </a>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="row mt-4">
+        </div>
+    <div class="rectangles-container">
+        <div class="rectangle"></div>
+        <div class="rectangle"></div>
+        <div class="rectangle"></div>
+    </div>
+    <div class="publicaciones-container">
+        <h5>Publicaciones</h5>
+    </div>
+    <div class="sitios-relacionados-container">
+        <h5>Sitios relacionados</h5>
+    </div>
+</body>
+</html>

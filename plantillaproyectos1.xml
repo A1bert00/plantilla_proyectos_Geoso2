@@ -1,0 +1,42 @@
+<root>
+    <titulo>Agua potable en la población Baka de Camerún</titulo>
+    <autor>Diego Torres Panadero</autor>
+    <fecha>Verano de 2024</fecha>
+    <acronimo>GEOCOOP Agua 24</acronimo>
+    <abstract>Proyecto de aprendizaje servicio (UPM-ZyL) llevado a cabo como TFG de Diego Torres Panadero. Se analizó el acceso y la calidad del agua en comunidades Baka del Sur y Este de Camerún (julio-septiembre 2024). Se muestrearon 45 fuentes de agua (34 superficiales) y 51 rutas de acceso en los alrededores de Bengbis Adjoli, Afan Avoto y Mintom II. Los análisis visuales, fisicoquímicos y microbiológicos revelaron que más del 70% del agua no es potable.</abstract>
+    <logos>
+        <logo>
+            <path>Original/Logos/GEOSO2_logo_negro_bola_verde.png</path>
+        </logo>
+        <logo>
+            <path>Original/Logos/MONTESlogo.jpeg</path>
+        </logo>
+        <logo>
+            <path>Original/Logos/UPMlogo.jpeg</path>
+        </logo>
+        <logo>
+            <path>Original/Logos/ZERCA_Y_LEJOSlogo.jpeg</path>
+        </logo>
+        <logo>
+            <path>Original/Logos/Left_Cape.png</path>
+        </logo>
+    </logos>
+    <personas>500</personas>
+    <ODS1>4_ODS.jpg</ODS1>
+    <ODS2>6_ODS.jpg</ODS2>
+    <ODS3>13_ODS.jpg</ODS3>
+    <sector1>basicas.png</sector1>
+    <sector2>salud.png</sector2>
+    <sector3>cultura.png</sector3>
+    <publicacion1>---</publicacion1>
+    <publicacion2>---</publicacion2>
+    <publicacion3>---</publicacion3>
+    <colaboradores1>ETSI Montes, Forestal y del Medio Natural</colaboradores1>
+    <colaboradores2>UPM</colaboradores2>
+    <colaboradores3>GeoSO2</colaboradores3>
+    <colaboradores4>Zerca y Lejos</colaboradores4>
+    <colaboradores5>Left Cape</colaboradores5>
+    <sitiorelacionado1>---</sitiorelacionado1>
+    <sitiorelacionado2>---</sitiorelacionado2>
+    <sitiorelacionado3>---</sitiorelacionado3>
+</root>
